@@ -1,0 +1,115 @@
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols:1
+            padding: 15, 15
+            spacing: 20, 20
+            Label:
+                text: "Yaw la kane !"
+                font_size: '20sp'
+            TextInput:
+                id: username
+                hint_text: "Sa tour"
+            TextInput:
+                id: password
+                password: True
+                hint_text: "Sa thiabbi"
+            RelativeLayout:
+                Button:
+                    text: "Oubbil bountou bi"
+                    on_press: root.login(root.ids.username.text, root.ids.password.text)
+                    size_hint: 0.3, 0.5
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                    background_color: 1, 1, 1, 0
+                    opacity: 1 if self.state == 'normal' else 0.5
+                    color: 0.1, 0.7, 1, 1
+                    
+            Label:
+                id: login_wrong
+                text: ""
+        GridLayout:
+            cols: 2
+            size_hint: 0.2, 0.2
+            padding: 10, 10
+            spacing: 10, 0
+            Button:
+                text: "Fatei na samay thiabbi"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1, 1
+            Button:
+                on_press: root.sign_up()
+                text: "awma thiabbi"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1, 1
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        padding: 15, 15
+        spacing: 20, 20
+        Label:
+            text: "Dama beugg bokk"
+            font_size: '40sp'
+        TextInput:
+            id: username
+            hint_text: "Username"
+        TextInput:
+            id: password
+            hint_text: "Password"
+        RelativeLayout:
+            Button:
+                text: "Submit"
+                on_press: root.add_user(root.ids.username.text, root.ids.password.text)
+                size_hint: 0.3, 0.5
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1, 1
+<SignUpScreenSuccess>
+    GridLayout:
+        cols:1
+        Label:
+            text: "sign up success !"
+        Button:
+            text : "Log in"
+            on_press: root.go_to_login()
+<LoginScreenSuccess>
+    GridLayout:
+        cols: 1
+        padding: 30, 30
+        spacing: 30,30
+        RelativeLayout
+            ImageButton:
+                on_press: root.logout()
+                source: 'logout_hover.png' if self.hovered else "logout_nohover.png"
+                pos_hint: {'center_x': 0.93, 'center_y': 0.8}
+        Label:
+            text: "Na nga deff ?"
+        TextInput:
+            id: feeling
+            hint_text: "Waxal baat you mel ni: contane, meer, wett..."
+        Button:
+            text: "Begg Loma way"
+            on_press: root.get_quotes(root.ids.feeling.text)
+        ScrollView
+            Label:
+                id: quote
+                text: ""
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+
+<RootWidget>
+    LoginScreen:
+        name: "login_screen"
+    SignUpScreen:
+        name: "sign_up_screen"
+    SignUpScreenSuccess:
+        name: "sign_up_screen_succes"
+    LoginScreenSuccess:
+        name: "login_screen_success"
+
+
+    
